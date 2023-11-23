@@ -1,6 +1,7 @@
 
 // import PropTypes from 'prop-types';
 
+import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -56,7 +57,9 @@ const SignUp = () => {
     }
     return (
         <div>
-
+            <Helmet>
+                <title>P & S || SignUp</title>
+            </Helmet>
             <div className="my-16 px-3 md:px-0">
                 <h1 className="text-4xl font-semibold text-center mb-3">Please SignUp</h1>
                 <div className="md:w-3/4 lg:w-1/2 mx-auto border-b-2 border-black px-3 md:px-1 mb-4"></div>
