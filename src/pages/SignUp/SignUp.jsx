@@ -4,10 +4,11 @@
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const SignUp = () => {
     // const axiosPublic = useAxiousPublic();
-    // const { createUser, updateUserProfile } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useAuth()
     // const navigate = useNavigate()
     const {
         register,
@@ -21,39 +22,39 @@ const SignUp = () => {
         const name = data.name;
         const photo = data.photo;
         console.log(email, password, name, photo);
-        // createUser(email, password)
-        //     .then(result => {
-        //         const user = result.user;
-        //         console.log(user);
-        //         updateUserProfile(name, photo)
-        //             .then(() => {
-        //                 const userInfo = {
-        //                     name: name,
-        //                     email: email
-        //                 }
-        //                 axiosPublic.post('/users', userInfo)
-        //                     .then(res => {
-        //                         if (res.data.insertedId) {
-        //                             Swal.fire({
-        //                                 position: "top-end",
-        //                                 icon: "success",
-        //                                 title: "User profile updated",
-        //                                 showConfirmButton: false,
-        //                                 timer: 1500
-        //                             });
-        //                             reset();
-        //                             navigate('/')
-        //                         }
-        //                     })
+        createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                // updateUserProfile(name, photo)
+                //     .then(() => {
+                //         const userInfo = {
+                //             name: name,
+                //             email: email
+                //         }
+                //         axiosPublic.post('/users', userInfo)
+                //             .then(res => {
+                //                 if (res.data.insertedId) {
+                //                     Swal.fire({
+                //                         position: "top-end",
+                //                         icon: "success",
+                //                         title: "User profile updated",
+                //                         showConfirmButton: false,
+                //                         timer: 1500
+                //                     });
+                //                     reset();
+                //                     navigate('/')
+                //                 }
+                //             })
 
-        //             })
-        //             .catch(error => {
-        //                 console.log(error);
-        //             })
-        //     })
-        //     .catch(error => {
-        //         console.error(error);
-        //     })
+                //     })
+                //     .catch(error => {
+                //         console.log(error);
+                //     })
+            })
+            .catch(error => {
+                console.error(error);
+            })
     }
     return (
         <div>
@@ -70,7 +71,7 @@ const SignUp = () => {
                             <span className="label-text">Name</span>
                         </label>
                         <input type="text" {...register("name", { required: true })} name="name" placeholder="Name" className="input input-bordered" />
-                        {errors.email && <span className="text-error">This field is required</span>}
+                        {errors.name && <span className="text-error">This field is required</span>}
                     </div>
                     <div className="form-control">
                         <label className="label">
