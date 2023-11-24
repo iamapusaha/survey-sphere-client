@@ -2,17 +2,26 @@
 // import PropTypes from 'prop-types';
 
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const NavBar = () => {
-    // const { user, logOut } = useContext(AuthContext);
-    // const [cart] = useCart()
-    // const handlelogOut = () => {
-    //     logOut()
-    //         .then()
-    //         .catch(error => {
-    //             console.log(error);
-    //         })
-    // }
+    const { user, logOut } = useAuth();
+    const handlelogOut = () => {
+        logOut()
+            .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "you are successfully logout",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
 
     const menuItem = <>
         <li><Link to='/'>Home</Link></li>
@@ -57,7 +66,7 @@ const NavBar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                {/* {
+                {
                     user ? <div className="dropdown dropdown-end text-black">
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
@@ -76,8 +85,7 @@ const NavBar = () => {
                         </ul>
                     </div>
                         : <button className="btn btn-ghost"><Link to='/login'>Login</Link></button>
-                } */}
-                <button className="btn btn-ghost"><Link to='/login'>Login</Link></button>
+                }
             </div>
         </div>
     );
