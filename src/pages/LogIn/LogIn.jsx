@@ -3,12 +3,16 @@
 
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import Swal from "sweetalert2";
 
 const LogIn = () => {
+    const location = useLocation();
+    const navigate = useNavigate()
+    const from = location.state?.from?.pathname || "/";
     const { signIn } = useAuth()
     const { register, handleSubmit } = useForm()
     const [error, setError] = useState(null)
@@ -17,7 +21,15 @@ const LogIn = () => {
         signIn(data.email, data.password)
             .then(result => {
                 console.log(result);
-                setError(null)
+                setError(null);
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "you are successfully logged in",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate(from, { replace: true })
             })
             .catch(error => {
                 setError(error.message)
@@ -51,9 +63,10 @@ const LogIn = () => {
                     <input className="btn bg-[#6f7191] text-white" type="submit" value="LogIn" />
                 </div>
             </form>
+            <SocialLogin></SocialLogin>
             <p className="text-center mt-4">Dont’t Have An Account ? <Link className="text-red-400" to='/signup'>SignUp</Link></p>
             <p className="text-red-600 text-center mt-2 text-xl">{error}</p>
-            <SocialLogin></SocialLogin>
+
         </div>
     );
 };
