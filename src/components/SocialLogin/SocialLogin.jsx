@@ -15,27 +15,23 @@ const SocialLogin = () => {
     const handleGoogleSigIn = () => {
         signInWithGoogle(googleProvider)
             .then(result => {
-
                 const userInfo = {
                     name: result.user.displayName,
                     email: result.user.email
                 }
                 axiousPublic.post('/users', userInfo)
                     .then(res => {
-                        if (res.data.insertedId) {
-                            Swal.fire({
-                                position: "top-end",
-                                icon: "success",
-                                title: "you are successfully logged in",
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
-                        }
-                        navigate(from, { replace: true })
+                        console.log(res.data);
+
                     })
-                    .catch(error => {
-                        console.log(error);
-                    })
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "you are successfully logged in",
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                navigate(from, { replace: true })
             })
             .catch(error => {
                 console.log(error);
