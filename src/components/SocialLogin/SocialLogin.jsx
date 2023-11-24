@@ -5,6 +5,8 @@ import useAuth from "../../hooks/useAuth";
 import useAxiousPublic from "../../hooks/useAxiousPublic";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
+
+
 const SocialLogin = () => {
     const location = useLocation();
     const navigate = useNavigate()
