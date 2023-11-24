@@ -2,10 +2,13 @@ import { createContext, useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import PropTypes from 'prop-types';
 import app from "../firebase/firebase.config";
-import useaxiosSecure from "../hooks/useaxiosSecure";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+
 export const AuthContext = createContext();
+
+
 const AuthProvider = ({ children }) => {
-    const axiousSecret = useaxiosSecure()
+    const axiosSecret = useAxiosSecure()
     const auth = getAuth(app);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -41,7 +44,7 @@ const AuthProvider = ({ children }) => {
                 const userInfo = {
                     email: currentUser.email
                 }
-                axiousSecret.post('/jwt', userInfo)
+                axiosSecret.post('/jwt', userInfo)
                     .then(res => {
                         console.log(res.data);
                         const token = res.data.token;
@@ -57,7 +60,7 @@ const AuthProvider = ({ children }) => {
         return () => {
             return unSubscribe()
         }
-    }, [auth, axiousSecret])
+    }, [auth, axiosSecret])
 
     const authInfo = {
         user,
