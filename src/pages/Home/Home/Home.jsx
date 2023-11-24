@@ -5,8 +5,10 @@ import { Helmet } from "react-helmet-async";
 import useaxiosSecure from "../../../hooks/useAxiosSecure";
 
 
+
 const Home = () => {
-    const axiousSecret = useaxiosSecure()
+
+    const axiousSecret = useaxiosSecure();
     axiousSecret.get('/users')
         .then(res => {
             console.log(res.data);
