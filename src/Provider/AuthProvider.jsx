@@ -44,6 +44,10 @@ const AuthProvider = ({ children }) => {
                 axiousSecret.post('/jwt', userInfo)
                     .then(res => {
                         console.log(res.data);
+                        const token = res.data.token;
+                        if (token) {
+                            localStorage.setItem('access-token', token)
+                        }
                     })
             }
             setLoading(false)
