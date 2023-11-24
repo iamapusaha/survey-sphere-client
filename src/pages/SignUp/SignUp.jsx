@@ -6,15 +6,17 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import Swal from "sweetalert2";
+import useAxiousPublic from "../../hooks/useAxiousPublic";
 
 const SignUp = () => {
-    // const axiosPublic = useAxiousPublic();
+    const axiosPublic = useAxiousPublic();
     const { createUser, updateUserProfile } = useAuth()
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
     const {
         register,
         handleSubmit,
-        // reset,
+        reset,
         formState: { errors },
     } = useForm()
     const onSubmit = (data) => {
@@ -27,31 +29,32 @@ const SignUp = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                // updateUserProfile(name, photo)
-                //     .then(() => {
-                //         const userInfo = {
-                //             name: name,
-                //             email: email
-                //         }
-                //         axiosPublic.post('/users', userInfo)
-                //             .then(res => {
-                //                 if (res.data.insertedId) {
-                //                     Swal.fire({
-                //                         position: "top-end",
-                //                         icon: "success",
-                //                         title: "User profile updated",
-                //                         showConfirmButton: false,
-                //                         timer: 1500
-                //                     });
-                //                     reset();
-                //                     navigate('/')
-                //                 }
-                //             })
+                updateUserProfile(name, photo)
+                    .then(() => {
+                        const userInfo = {
+                            name: name,
+                            email: email
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                console.log(res);
+                                if (res.data.insertedId) {
+                                    Swal.fire({
+                                        position: "top-end",
+                                        icon: "success",
+                                        title: "User profile updated",
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    reset();
+                                    navigate('/')
+                                }
+                            })
 
-                //     })
-                //     .catch(error => {
-                //         console.log(error);
-                //     })
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
             })
             .catch(error => {
                 console.error(error);
