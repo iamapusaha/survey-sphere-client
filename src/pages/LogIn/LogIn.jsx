@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const LogIn = () => {
     const { signIn } = useAuth()
@@ -52,7 +53,7 @@ const LogIn = () => {
             </form>
             <p className="text-center mt-4">Dont’t Have An Account ? <Link className="text-red-400" to='/signup'>SignUp</Link></p>
             <p className="text-red-600 text-center mt-2 text-xl">{error}</p>
-
+            <SocialLogin></SocialLogin>
         </div>
     );
 };
