@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const SignUp = () => {
     // const axiosPublic = useAxiousPublic();
@@ -107,7 +108,7 @@ const SignUp = () => {
                     </div>
                 </form>
                 <p className="text-center mb-4">Already registered? Go to <Link className="text-red-700 text-bold" to='/login'>log in</Link></p>
-                {/* <SocialLogin></SocialLogin> */}
+                <SocialLogin></SocialLogin>
 
 
             </div>

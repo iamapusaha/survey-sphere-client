@@ -63,8 +63,9 @@ const LogIn = () => {
                     <input className="btn bg-[#6f7191] text-white" type="submit" value="LogIn" />
                 </div>
             </form>
-            <SocialLogin></SocialLogin>
+
             <p className="text-center mt-4">Dont’t Have An Account ? <Link className="text-red-400" to='/signup'>SignUp</Link></p>
+            <SocialLogin></SocialLogin>
             <p className="text-red-600 text-center mt-2 text-xl">{error}</p>
 
         </div>
