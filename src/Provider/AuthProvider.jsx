@@ -2,10 +2,10 @@ import { createContext, useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import PropTypes from 'prop-types';
 import app from "../firebase/firebase.config";
-import useAxiousSecure from "../hooks/useAxiousSecure";
+import useaxiosSecure from "../hooks/useaxiosSecure";
 export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
-    const axiousSecret = useAxiousSecure()
+    const axiousSecret = useaxiosSecure()
     const auth = getAuth(app);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);

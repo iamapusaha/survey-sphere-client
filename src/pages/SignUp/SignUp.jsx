@@ -7,10 +7,10 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import Swal from "sweetalert2";
-import useAxiousPublic from "../../hooks/useAxiousPublic";
+import useaxiosPublic from "../../hooks/useaxiosPublic";
 
 const SignUp = () => {
-    const axiosPublic = useAxiousPublic();
+    const axiosPublic = useaxiosPublic();
     const { createUser, updateUserProfile } = useAuth()
     const navigate = useNavigate()
     const {

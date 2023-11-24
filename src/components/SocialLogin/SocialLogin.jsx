@@ -2,7 +2,7 @@ import { GoogleAuthProvider } from "firebase/auth";
 // import PropTypes from 'prop-types';
 import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../hooks/useAuth";
-import useAxiousPublic from "../../hooks/useAxiousPublic";
+import useaxiosPublic from "../../hooks/useaxiosPublic";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -12,7 +12,7 @@ const SocialLogin = () => {
     const navigate = useNavigate()
     const from = location.state?.from?.pathname || "/";
     const { signInWithGoogle } = useAuth();
-    const axiousPublic = useAxiousPublic()
+    const axiosPublic = useaxiosPublic()
     const googleProvider = new GoogleAuthProvider()
     const handleGoogleSigIn = () => {
         signInWithGoogle(googleProvider)
@@ -21,7 +21,7 @@ const SocialLogin = () => {
                     name: result.user.displayName,
                     email: result.user.email
                 }
-                axiousPublic.post('/users', userInfo)
+                axiosPublic.post('/users', userInfo)
                     .then(res => {
                         console.log(res.data);
 

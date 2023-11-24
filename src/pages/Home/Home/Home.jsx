@@ -2,8 +2,15 @@
 // import PropTypes from 'prop-types';
 
 import { Helmet } from "react-helmet-async";
+import useaxiosSecure from "../../../hooks/useAxiosSecure";
+
 
 const Home = () => {
+    const axiousSecret = useaxiosSecure()
+    axiousSecret.get('/users')
+        .then(res => {
+            console.log(res.data);
+        })
     return (
         <div>
             <Helmet>
