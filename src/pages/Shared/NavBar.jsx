@@ -27,6 +27,7 @@ const NavBar = () => {
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/menu'>Surveys Page</Link></li>
         <li><Link to='/order/salads'>Pricing page</Link></li>
+        <li><Link to='/dashboard'>dashboard</Link></li>
         {/* <li>
             <Link to='/dashboard/cart' className="dropdown dropdown-end">
                 <label tabIndex={0} className="">
