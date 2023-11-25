@@ -1,13 +1,14 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { FaHome, FaShoppingBag, FaUtensils } from 'react-icons/fa';
+import { FaHome, FaShoppingBag } from 'react-icons/fa';
 import { IoMdMenu } from "react-icons/io";
 import { IoMail } from "react-icons/io5";
+import { RiSurveyFill } from "react-icons/ri";
 
 
 const DashBoard = () => {
     return (
         <div className="container mx-auto flex gap-10">
-            <div className="w-72 h-screen bg-orange-400">
+            <div className="w-72 h-screen bg-blue-500">
                 <ul className="menu p-4 rounded-box mt-2 uppercase">
 
                     <>
@@ -16,7 +17,7 @@ const DashBoard = () => {
                             Admin Home
                         </NavLink></li>
                         <li className="mb-3"><NavLink to='/dashboard/survey-creation'>
-                            <FaUtensils></FaUtensils>
+                            <RiSurveyFill></RiSurveyFill>
                             Survey Creation
                         </NavLink></li>
 
