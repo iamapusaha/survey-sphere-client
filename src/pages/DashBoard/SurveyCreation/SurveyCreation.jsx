@@ -4,12 +4,15 @@ import { RiSurveyFill } from "react-icons/ri";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import moment from "moment/moment";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 
 const SurveyCreation = () => {
+    const timestamp = moment();
+    console.log(timestamp._d);
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
     const { register, handleSubmit, reset } = useForm()
@@ -21,7 +24,7 @@ const SurveyCreation = () => {
         })
         if (res.data.success) {
             reset()
-            const menuItem = {
+            const surveyItem = {
                 title: data.title,
                 description: data.description,
                 image: res.data.data.display_url,
@@ -29,15 +32,16 @@ const SurveyCreation = () => {
                 like: data.like,
                 dislike: data.dislike,
                 options: ["Yes", "No"],
+                timestamp: timestamp._id
             }
-            console.log(menuItem);
-            // const menuRes = await axiousSecure.post('/menu', menuItem)
-            console.log(menuRes.data);
-            if (menuRes.data.insertedId) {
+            console.log(surveyItem);
+            const surveyRes = await axiosSecure.post('/surveys', surveyItem)
+            console.log(surveyRes.data);
+            if (surveyRes.data.insertedId) {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: `${data.name} has been added!`,
+                    title: `${data.title} has been added!`,
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -84,13 +88,13 @@ const SurveyCreation = () => {
                         <label className="label">
                             <span className="label-text">Like*</span>
                         </label>
-                        <input {...register("like", { required: true })} type="number" defaultValue='0' placeholder="total like input" className="input input-bordered w-full" />
+                        <input {...register("like", { required: true })} type="number" defaultValue={0} placeholder="total like input" className="input input-bordered w-full" />
                     </div>
                     <div className="form-control w-full ">
                         <label className="label">
                             <span className="label-text">DisLike*</span>
                         </label>
-                        <input {...register("dislike", { required: true })} type="number" defaultValue='0' placeholder="total dislike input" className="input input-bordered w-full" />
+                        <input {...register("dislike", { required: true })} type="number" defaultValue={0} placeholder="total dislike input" className="input input-bordered w-full" />
                     </div>
                 </div>
                 <div className="form-control">
