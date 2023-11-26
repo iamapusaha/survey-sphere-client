@@ -6,6 +6,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import DashBoard from "../Layout/DashBoard";
 import SurveyCreation from "../pages/DashBoard/SurveyCreation/SurveyCreation";
 import AdminRoute from "./AdminRoute";
+import AllUsers from "../pages/DashBoard/AllUsers/AllUsers";
 
 
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
             {
                 path: 'survey-creation',
                 element: <AdminRoute><SurveyCreation></SurveyCreation></AdminRoute>
+            },
+            {
+                path: 'all-users',
+                element: <AllUsers></AllUsers>
             }
         ]
     },

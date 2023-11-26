@@ -20,6 +20,10 @@ const DashBoard = () => {
                             <RiSurveyFill></RiSurveyFill>
                             Survey Creation
                         </NavLink></li>
+                        <li className="mb-3"><NavLink to='/dashboard/all-users'>
+                            <RiSurveyFill></RiSurveyFill>
+                            All Users
+                        </NavLink></li>
 
                     </>
 
