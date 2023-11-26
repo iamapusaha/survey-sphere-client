@@ -11,8 +11,8 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 
 const SurveyCreation = () => {
-    const timestamp = moment();
-    console.log(timestamp._d);
+    const time = moment();
+    const timestamp = time._d;
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
     const { register, handleSubmit, reset } = useForm()
@@ -32,7 +32,7 @@ const SurveyCreation = () => {
                 like: data.like,
                 dislike: data.dislike,
                 options: ["Yes", "No"],
-                timestamp: timestamp._id
+                timestamp: timestamp,
             }
             console.log(surveyItem);
             const surveyRes = await axiosSecure.post('/surveys', surveyItem)
