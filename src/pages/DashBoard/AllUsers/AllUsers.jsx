@@ -5,18 +5,20 @@ import { useQuery } from "@tanstack/react-query";
 import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useState } from "react";
 
 const AllUsers = () => {
-    const axiosSecure = useAxiosSecure()
-    const { data: users = [], refetch } = useQuery({
-        queryKey: ['users'],
-        queryFn: async () => {
-            const res = await axiosSecure.get('/users')
-            // console.log(res.data);
+    const axiosSecure = useAxiosSecure();
+    const [category, setCategory] = useState(null)
 
+    const { data: users = [], refetch } = useQuery({
+        queryKey: ['users', category],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/users/${category || ''}`)
             return res.data
         }
     })
+
     const handleChangeUserRole = (user, role) => {
         axiosSecure.patch(`users/role/${user._id}`, { role })
             .then(res => {
@@ -62,10 +64,31 @@ const AllUsers = () => {
     }
     return (
         <div>
-            <h1>Total users: {users.length}</h1>
+
+            <div className="flex justify-between my-5">
+                <h1>Total users: {users.length}</h1>
+                <div className="flex-none">
+                    <ul className="menu menu-horizontal px-1">
+                        <li>
+                            <details>
+                                <summary>
+                                    Sort by user role
+                                </summary>
+                                <ul className="p-2 bg-base-100 rounded-t-none z-20">
+                                    <li onClick={() => setCategory('')}><a>All User</a></li>
+                                    <li onClick={() => setCategory('admin')}><a>admin</a></li>
+                                    <li onClick={() => setCategory('user')}><a>user</a></li>
+                                    <li onClick={() => setCategory('surveyor')}><a>surveyor</a></li>
+                                    <li onClick={() => setCategory('pro-user')}><a>pro-user</a></li>
+                                </ul>
+                            </details>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
             <div className="overflow-x-auto">
-                <table className="table table-zebra">
+                <table className="table table-zebr my-12">
                     {/* head */}
                     <thead>
                         <tr>
@@ -97,7 +120,7 @@ const AllUsers = () => {
                                         <li>
                                             <details>
                                                 <summary>
-                                                    Parent
+                                                    select
                                                 </summary>
                                                 <ul className=" bg-base-100 rounded-t-none z-10">
                                                     <li onClick={() => handleChangeUserRole(user, 'admin')}><a>admin</a></li>
