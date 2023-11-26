@@ -13,9 +13,9 @@ const AllUsers = () => {
         queryFn: async () => {
             const res = await axiosSecure.get('/users')
             // console.log(res.data);
+
             return res.data
         }
-
     })
     const handleChangeUserRole = (user, role) => {
         axiosSecure.patch(`users/role/${user._id}`, { role })
@@ -46,13 +46,14 @@ const AllUsers = () => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/users/${id}`)
                     .then(res => {
-                        console.log(res);
+                        console.log(res.data);
                         if (res.data.deletedCount > 0) {
                             refetch()
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your file has been deleted.",
                                 icon: "success"
+
                             });
                         }
                     })

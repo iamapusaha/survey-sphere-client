@@ -33,7 +33,8 @@ const SignUp = () => {
                     .then(() => {
                         const userInfo = {
                             name: name,
-                            email: email
+                            email: email,
+                            role: 'user'
                         }
                         axiosPublic.post('/users', userInfo)
                             .then(res => {
