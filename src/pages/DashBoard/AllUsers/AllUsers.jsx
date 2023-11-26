@@ -2,7 +2,7 @@
 // import PropTypes from 'prop-types';
 import { useQuery } from "@tanstack/react-query";
 
-import { FaTrashAlt, FaUsers } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
@@ -12,13 +12,13 @@ const AllUsers = () => {
         queryKey: ['users'],
         queryFn: async () => {
             const res = await axiosSecure.get('/users')
-            console.log(res.data);
+            // console.log(res.data);
             return res.data
         }
 
     })
-    const handleMakeAdmin = user => {
-        axiosSecure.patch(`users/admin/${user._id}`)
+    const handleChangeUserRole = (user, role) => {
+        axiosSecure.patch(`users/role/${user._id}`, { role })
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({
@@ -85,21 +85,24 @@ const AllUsers = () => {
                                 <td>{user.email}</td>
                                 <td>
                                     {user.role === 'admin' ? 'admin'
-                                        : <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost btn-lg">
-                                            <FaUsers></FaUsers>
-                                        </button>
+                                        : user.role === 'user' ? 'user'
+                                            : user.role === 'pro-user' ? 'pro-user'
+                                                : user.role === 'surveyor' ? 'surveyor'
+                                                    : 'unknown role'
                                     }
                                 </td>
                                 <td>
-                                    <ul className="menu menu-horizontal px-1">
+                                    <ul className="menu menu-horizontal">
                                         <li>
                                             <details>
                                                 <summary>
                                                     Parent
                                                 </summary>
-                                                <ul className="p-2 bg-base-100 rounded-t-none z-10">
-                                                    <li><a>Link 1</a></li>
-                                                    <li><a>Link 2</a></li>
+                                                <ul className=" bg-base-100 rounded-t-none z-10">
+                                                    <li onClick={() => handleChangeUserRole(user, 'admin')}><a>admin</a></li>
+                                                    <li onClick={() => handleChangeUserRole(user, 'surveyor')}><a>surveyor</a></li>
+                                                    <li onClick={() => handleChangeUserRole(user, 'pro-user')}><a>pro-user</a></li>
+                                                    <li onClick={() => handleChangeUserRole(user, 'user')}><a>user</a></li>
                                                 </ul>
                                             </details>
                                         </li>
