@@ -5,6 +5,7 @@ import LogIn from "../pages/LogIn/LogIn";
 import SignUp from "../pages/SignUp/SignUp";
 import DashBoard from "../Layout/DashBoard";
 import SurveyCreation from "../pages/DashBoard/SurveyCreation/SurveyCreation";
+import AdminRoute from "./AdminRoute";
 
 
 
@@ -22,11 +23,11 @@ const router = createBrowserRouter([
         ]
     }, {
         path: 'dashboard',
-        element: <DashBoard></DashBoard>,
+        element: <AdminRoute><DashBoard></DashBoard></AdminRoute>,
         children: [
             {
                 path: 'survey-creation',
-                element: <SurveyCreation></SurveyCreation>
+                element: <AdminRoute><SurveyCreation></SurveyCreation></AdminRoute>
             }
         ]
     },
