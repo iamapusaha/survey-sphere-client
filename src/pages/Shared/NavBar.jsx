@@ -26,7 +26,7 @@ const NavBar = () => {
 
     const menuItem = <>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='/menu'>Surveys Page</Link></li>
+        <li><Link to='/surveys'>Surveys</Link></li>
         <li><Link to='/order/salads'>Pricing page</Link></li>
         <li><Link to='/dashboard'>dashboard</Link></li>
         {/* <li>
