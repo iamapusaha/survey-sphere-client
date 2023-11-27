@@ -4,6 +4,7 @@ import useAuth from '../../hooks/useAuth';
 import moment from 'moment/moment';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 
 // description, category, like, dislike, options
@@ -60,10 +61,10 @@ const SurveyCart = ({ survey, refetch }) => {
                 <p>{yesVotes}</p>
                 <p>{noVotes}</p>
                 <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Buy Now</button>
+                    <Link to={`/survey/${_id}`} className="btn btn-primary">Details</Link>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
