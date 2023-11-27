@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 
 const NavBar = () => {
     const { user, logOut } = useAuth();
+
     const handlelogOut = () => {
         logOut()
             .then(() => {
@@ -68,7 +69,7 @@ const NavBar = () => {
             </div>
             <div className="navbar-end">
                 {
-                    user ? <div className="dropdown dropdown-end text-black">
+                    user ? <div className="z-20 dropdown dropdown-end text-black">
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
                                 <img src={user.photoURL} />
@@ -82,7 +83,7 @@ const NavBar = () => {
                                 </a>
                             </li>
                             <li><a>Settings</a></li>
-                            <li><button onClick={handlelogOut}>Logout</button></li>
+                            <li className="z-30"><button onClick={handlelogOut}>Logout</button></li>
                         </ul>
                     </div>
                         : <button className="btn btn-ghost"><Link to='/login'>Login</Link></button>

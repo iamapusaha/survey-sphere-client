@@ -8,16 +8,14 @@ import SurveyCart from "../../SurveyCart/SurveyCart";
 
 
 
-
-
-
 const Home = () => {
+
     const axiosPublic = useAxiosPublic();
-    const { data: surveysData } = useQuery({
+    const { data: surveysData, refetch } = useQuery({
         queryKey: ['surveys'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/surveys')
-            console.log(res.data);
+            const res = await axiosPublic.get('/api/surveys');
+            // console.log(res.data);
             return res.data
         }
     })
@@ -28,11 +26,12 @@ const Home = () => {
                 <title>P & S || Home</title>
             </Helmet>
             <h1 className="text-xl">this is our home</h1>
-            <div className="grid grid-cols-4 gap-5 justify-between items-center">
+            <div className="grid grid-cols-4 gap-5 justify-between items-center mt-36">
                 {
                     surveysData?.map(survey => <SurveyCart
                         key={survey._id}
                         survey={survey}
+                        refetch={refetch}
                     ></SurveyCart>)
                 }
             </div>
