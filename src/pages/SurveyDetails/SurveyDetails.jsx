@@ -15,7 +15,27 @@ const SurveyDetails = () => {
     const axiosPublic = useAxiosPublic()
     const currentTime = moment();
     const timestamp = currentTime._d
-
+    const handleLikeDislike = (like, dislike) => {
+        const reactInfo = {
+            like,
+            dislike
+        }
+        console.log(reactInfo);
+        axiosPublic.patch(`/survey/likedis/${_id}`, reactInfo)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+                    // refetch() 
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "your react added",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+    }
     const handleCollectVotes = (vote) => {
         const voteInfo = {
             surveyId: _id,
@@ -62,8 +82,8 @@ const SurveyDetails = () => {
                         <button onClick={() => handleCollectVotes('no')} className="btn btn-outline btn-error">No</button>
                     </div>
                     <div className="flex gap-5">
-                        <button><AiOutlineLike className="text-6xl"></AiOutlineLike></button>
-                        <button><AiOutlineDislike className="text-6xl"></AiOutlineDislike></button>
+                        <button onClick={() => handleLikeDislike(1, 0)}><AiOutlineLike className="text-6xl"></AiOutlineLike></button>
+                        <button onClick={() => handleLikeDislike(0, 1)}><AiOutlineDislike className="text-6xl"></AiOutlineDislike></button>
                     </div>
                     <div className="text-center">
                         <h1 className="font-bold text-xl p-2"></h1>
