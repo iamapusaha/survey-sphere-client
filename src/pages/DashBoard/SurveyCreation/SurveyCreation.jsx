@@ -20,11 +20,12 @@ const SurveyCreation = () => {
     const axiosSecure = useAxiosSecure();
     const { register, handleSubmit, reset } = useForm()
     const onSubmit = async (data) => {
-        // console.log(data.image[0])
         const imgFile = { image: data.image[0] }
         const res = await axiosPublic.post(image_hosting_api, imgFile, {
             headers: { "Content-Type": 'multipart/form-data' }
         })
+        const like = parseInt(data.like)
+        const dislike = parseInt(data.dislike)
         if (res.data.success) {
             reset()
             const surveyItem = {
@@ -32,8 +33,8 @@ const SurveyCreation = () => {
                 description: data.description,
                 image: res.data.data.display_url,
                 category: data.category,
-                like: data.like,
-                dislike: data.dislike,
+                like,
+                dislike,
                 options: ["Yes", "No"],
                 timestamp,
                 status
