@@ -37,7 +37,10 @@ const SurveyCreation = () => {
                 dislike,
                 options: ["Yes", "No"],
                 timestamp,
-                status
+                status,
+                comments: [
+
+                ]
             }
             // console.log(surveyItem);
             const surveyRes = await axiosSecure.post('/surveys', surveyItem)

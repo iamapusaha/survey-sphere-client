@@ -15,6 +15,30 @@ const SurveyDetails = () => {
     const axiosPublic = useAxiosPublic()
     const currentTime = moment();
     const timestamp = currentTime._d
+    const handlAddComment = e => {
+        e.preventDefault()
+        const comment = e.target.comment.value;
+        const commentInfo = {
+            user: user.displayName,
+            email: user.email,
+            comment
+        }
+        console.log(commentInfo);
+        axiosPublic.patch(`/survey/comment/${_id}`, commentInfo)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+                    // refetch() 
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "your react added",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+    }
     const handleLikeDislike = (like, dislike) => {
         const reactInfo = {
             like,
@@ -99,18 +123,20 @@ const SurveyDetails = () => {
             </div>
             <div>
                 <div className="container mx-auto my-6 bg-[#F6F6F6] p-5 rounded">
-                    <h1 className="text-5xl text-center my-2">Bid Now</h1>
-                    <form onSubmit=''>
+                    <h1 className="text-5xl text-center my-2">Add Your Comment</h1>
+                    <form onSubmit={handlAddComment}>
                         <div className="md:flex gap-3 px-2 md:px-1 mb-6">
                             <div className="form-control w-full">
                                 <label className="label">
-                                    <span className="label-text">Price</span>
+                                    <span className="label-text">Comment</span>
                                 </label>
                                 <label className="input-group">
-                                    <input type="text" required name="price" placeholder="your bidding amount" className="input input-bordered w-full" />
+                                    {/* <input type="" required name="price" placeholder="your bidding amount" className="input input-bordered w-full" /> */}
+                                    <textarea name="comment" placeholder="Write your comment here" required className="textarea textarea-bordered textarea-xs w-full" ></textarea>
                                 </label>
                             </div>
                         </div>
+                        <input className="btn btn-block bg-[#6f7191] text-white" type="submit" value="Add Comment" />
                         {/* {
                             email === user?.email ?
                                 <input disabled="disabled" className=" btn btn-block bg-[#121216] text-white" type="submit" value="Bid on the project" />
