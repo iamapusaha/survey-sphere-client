@@ -57,6 +57,7 @@ const Home = () => {
                 }
             </div>
             <div className="my-8 py-5">
+                <h1 className="text-center text-5xl text-primary mb-9">Testimonials</h1>
                 <Marquee>
                     <div className="h-96 mx-4 card bordered w-96 bg-base-100 shadow-xl">
                         <figure className="p-6">
@@ -131,6 +132,56 @@ const Home = () => {
                         </div>
                     </div>
                 </Marquee>
+            </div>
+
+
+            <div className="join join-vertical w-full my-20">
+                <h1 className="text-center text-5xl text-primary mb-9">FAQ</h1>
+                <div className="collapse collapse-arrow join-item border border-base-300">
+                    <input type="radio" name="my-accordion-1" checked="checked" />
+                    <div className="collapse-title text-xl font-medium">
+                        What is SurveySphere?
+                    </div>
+                    <div className="collapse-content">
+                        <p>SurveySphere is a powerful platform that allows users to create and participate in surveys. It uses advanced technology to provide a user-friendly interface and efficient survey management tools. Users can vote, react, and even report surveys after logging in.</p>
+                    </div>
+                </div>
+                <div className="collapse collapse-arrow join-item border border-base-300">
+                    <input type="radio" name="my-accordion-2" />
+                    <div className="collapse-title text-xl font-medium">
+                        How can I participate in a survey?
+                    </div>
+                    <div className="collapse-content">
+                        <p>To participate in a survey, you need to log in to our website. Once logged in, you can vote, react like or dislike, or even report any survey. Your participation helps in gathering diverse opinions and data.</p>
+                    </div>
+                </div>
+                <div className="collapse collapse-arrow join-item border border-base-300">
+                    <input type="radio" name="my-accordion-3" />
+                    <div className="collapse-title text-xl font-medium">
+                        What are the benefits of being a pro-user?
+                    </div>
+                    <div className="collapse-content">
+                        <p>Pro-users enjoy additional benefits such as the ability to comment on surveys. This feature provides an opportunity for deeper engagement and discussion around survey topics. To become a pro-user, there is a subscription fee which can be paid through our payment page.</p>
+                    </div>
+                </div>
+                <div className="collapse collapse-arrow join-item border border-base-300">
+                    <input type="radio" name="my-accordion-4" />
+                    <div className="collapse-title text-xl font-medium">
+                        How can I become a pro-user?
+                    </div>
+                    <div className="collapse-content">
+                        <p>You can become a pro-user by subscribing through our payment page. Once the payment is successful, you will gain access to additional features like commenting on surveys.</p>
+                    </div>
+                </div>
+                <div className="collapse collapse-arrow join-item border border-base-300">
+                    <input type="radio" name="my-accordion-5" />
+                    <div className="collapse-title text-xl font-medium">
+                        Is my data secure with SurveySphere?
+                    </div>
+                    <div className="collapse-content">
+                        <p>Yes, at SurveySphere, we prioritize the security of your data. We use powerful technology and robust security measures to ensure that your data is safe and secure. Your trust is important to us, and we are committed to maintaining it.</p>
+                    </div>
+                </div>
             </div>
         </div>
     );
