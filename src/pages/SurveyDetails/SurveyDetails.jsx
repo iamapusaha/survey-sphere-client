@@ -6,11 +6,13 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import moment from "moment/moment";
 import Swal from "sweetalert2";
+import useProUser from "../../hooks/useProUser";
 
 const SurveyDetails = () => {
     const surveyData = useLoaderData();
+    const [isProUser] = useProUser()
+    console.log(isProUser);
     const { _id, like, title, image, description, totalVotes, yesVotes, noVotes } = surveyData;
-    console.log(typeof (like));
     const { user } = useAuth();
     const axiosPublic = useAxiosPublic()
     const currentTime = moment();
@@ -141,12 +143,12 @@ const SurveyDetails = () => {
                                 </label>
                             </div>
                         </div>
-                        <input className="btn btn-block bg-[#6f7191] text-white" type="submit" value="Add Comment" />
-                        {/* {
-                            email === user?.email ?
-                                <input disabled="disabled" className=" btn btn-block bg-[#121216] text-white" type="submit" value="Bid on the project" />
-                                : <input className="btn btn-block bg-[#6f7191] text-white" type="submit" value="Bid on the project" />
-                        } */}
+
+                        {
+                            isProUser ?
+                                <input className="btn btn-block bg-[#6f7191] text-white" type="submit" value="Add Comment" />
+                                : <input disabled className="btn btn-block bg-[#6f7191] text-white" type="submit" value="Add Comment" />
+                        }
                     </form>
                 </div>
             </div>
