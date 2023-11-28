@@ -5,8 +5,17 @@ import { Helmet } from "react-helmet-async";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import SurveyCart from "../../SurveyCart/SurveyCart";
-import banner from '../../../assets/survey-banner.jpg'
 import { Link } from "react-router-dom";
+// import MyComponent from "../components/MyComponent";
+import Marquee from "react-fast-marquee";
+import banner from '../../../assets/survey-banner.jpg'
+import one from '../../../assets/1.jpg'
+import two from '../../../assets/2.jpg'
+import three from '../../../assets/3.jpg'
+import four from '../../../assets/4.jpg'
+import five from '../../../assets/5.jpg'
+import six from '../../../assets/6.jpg'
+
 
 
 
@@ -46,6 +55,82 @@ const Home = () => {
                         refetch={refetch}
                     ></SurveyCart>)
                 }
+            </div>
+            <div className="my-8 py-5">
+                <Marquee>
+                    <div className="h-96 mx-4 card bordered w-96 bg-base-100 shadow-xl">
+                        <figure className="p-6">
+                            <img src={one} alt="Avatar" className="rounded-full h-24 w-24 object-cover mx-auto border-4 border-primary" />
+                        </figure>
+                        <div className="card-body">
+                            <h2 className="card-title text-primary">John Doe</h2>
+                            <p>SurveySphere has revolutionized the way we conduct surveys and collect data.Highly recommended for anyone looking to conduct surveys on a global scale</p>
+                            <div className="justify-end card-actions">
+                                <button className="btn glass rounded-full">Read More</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="h-96 mx-4 card bordered w-96 bg-base-100 shadow-xl">
+                        <figure className="p-6">
+                            <img src={two} alt="Avatar" className="rounded-full h-24 w-24 object-cover mx-auto border-4 border-primary" />
+                        </figure>
+                        <div className="card-body">
+                            <h2 className="card-title text-primary">Emma Smith</h2>
+                            <p>SurveySphere’s user-friendly interface made data collection a breeze. A game-changer!</p>
+                            <div className="justify-end card-actions">
+                                <button className="btn glass rounded-full">Read More</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="h-96 mx-4 card bordered w-96 bg-base-100 shadow-xl">
+                        <figure className="p-6">
+                            <img src={three} alt="Avatar" className="rounded-full h-24 w-24 object-cover mx-auto border-4 border-primary" />
+                        </figure>
+                        <div className="card-body">
+                            <h2 className="card-title text-primary">Liam Johnson</h2>
+                            <p>SurveySphere has made our research process efficient and reliable. Highly recommended!</p>
+                            <div className="justify-end card-actions">
+                                <button className="btn glass rounded-full">Read More</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="h-96 mx-4 card bordered w-96 bg-base-100 shadow-xl">
+                        <figure className="p-6">
+                            <img src={four} alt="Avatar" className="rounded-full h-24 w-24 object-cover mx-auto border-4 border-primary" />
+                        </figure>
+                        <div className="card-body">
+                            <h2 className="card-title text-primary">Olivia Williams</h2>
+                            <p>With SurveySphere, we’ve been able to reach a wider audience. Fantastic platform!</p>
+                            <div className="justify-end card-actions">
+                                <button className="btn glass rounded-full">Read More</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="h-96 mx-4 card bordered w-96 bg-base-100 shadow-xl">
+                        <figure className="p-6">
+                            <img src={five} alt="Avatar" className="rounded-full h-24 w-24 object-cover mx-auto border-4 border-primary" />
+                        </figure>
+                        <div className="card-body">
+                            <h2 className="card-title text-primary">Noah Jones</h2>
+                            <p>SurveySphere is revolutionizing surveys on a global scale. We love it!</p>
+                            <div className="justify-end card-actions">
+                                <button className="btn glass rounded-full">Read More</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="h-96 mx-4 card bordered w-96 bg-base-100 shadow-xl">
+                        <figure className="p-6">
+                            <img src={six} alt="Avatar" className="rounded-full h-24 w-24 object-cover mx-auto border-4 border-primary" />
+                        </figure>
+                        <div className="card-body">
+                            <h2 className="card-title text-primary">Ava Brown</h2>
+                            <p>“SurveySphere has significantly improved our data accuracy. It’s a must-have tool!</p>
+                            <div className="justify-end card-actions">
+                                <button className="btn glass rounded-full">Read More</button>
+                            </div>
+                        </div>
+                    </div>
+                </Marquee>
             </div>
         </div>
     );
