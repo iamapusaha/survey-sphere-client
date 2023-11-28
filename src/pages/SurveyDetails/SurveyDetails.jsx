@@ -7,10 +7,12 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import moment from "moment/moment";
 import Swal from "sweetalert2";
 import useProUser from "../../hooks/useProUser";
+import UseUser from "../../hooks/UseUser";
 
 const SurveyDetails = () => {
     const surveyData = useLoaderData();
     const { user } = useAuth();
+    const [isUser] = UseUser()
     const [isProUser] = useProUser()
     console.log(isProUser, user);
     const { _id, like, title, image, description, totalVotes, yesVotes, noVotes } = surveyData;
@@ -67,7 +69,7 @@ const SurveyDetails = () => {
             })
     }
     const handleLikeDislike = (like, dislike) => {
-        if (user || isProUser) {
+        if (isUser || isProUser) {
             const reactInfo = {
                 like,
                 dislike
@@ -92,7 +94,7 @@ const SurveyDetails = () => {
             Swal.fire({
                 position: "top-end",
                 icon: "error",
-                title: "login first to participated the survey.",
+                title: "only  logged user/pro-user can participated the survey.",
                 showConfirmButton: false,
                 timer: 1500
             });
@@ -100,7 +102,7 @@ const SurveyDetails = () => {
     }
     const handleCollectVotes = (yes, no, vote) => {
 
-        if (user || isProUser) {
+        if (isUser || isProUser) {
             const voteInfo = {
                 vote: {
                     yes,
@@ -130,7 +132,7 @@ const SurveyDetails = () => {
                         Swal.fire({
                             position: "top-end",
                             icon: "error",
-                            title: "You have already participated in this survey.",
+                            title: "only  logged user/pro-user can give vote!",
                             showConfirmButton: false,
                             timer: 1500
                         });
@@ -216,7 +218,7 @@ const SurveyDetails = () => {
                         </div>
 
                         {
-                            isProUser || user ?
+                            isProUser || isUser ?
                                 <input className="btn btn-block bg-[#6f7191] text-white" type="submit" value="Add Report" />
                                 : <input disabled className="btn btn-block bg-[#6f7191] text-white" type="submit" value="Add Report" />
                         }
