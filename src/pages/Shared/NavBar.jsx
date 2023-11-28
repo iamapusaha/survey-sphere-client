@@ -50,7 +50,7 @@ const NavBar = () => {
         </li> */}
     </>
     return (
-        <div className=" z-10 navbar bg-opacity-10">
+        <div className=" z-10 navbar bg-opacity-10 my-3">
             <div className="navbar-start">
                 <div className="dropdown ">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
