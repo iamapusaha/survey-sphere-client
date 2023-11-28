@@ -33,14 +33,16 @@ const SurveyCreation = () => {
                 description: data.description,
                 image: res.data.data.display_url,
                 category: data.category,
+                expireIn: data.expireIn,
                 like,
                 dislike,
-                options: ["Yes", "No"],
+                totalVote: 0,
+                yes: 0,
+                no: 0,
                 timestamp,
                 status,
-                comments: [
-
-                ]
+                votes: [],
+                comments: []
             }
             // console.log(surveyItem);
             const surveyRes = await axiosSecure.post('/surveys', surveyItem)
@@ -60,12 +62,20 @@ const SurveyCreation = () => {
     return (
         <div className="my-8">
             <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-                <div>
+                <div className="flex gap-6">
                     <div className="form-control w-full ">
                         <label className="label">
                             <span className="label-text">A Title*</span>
                         </label>
                         <input {...register("title", { required: true })} type="text" placeholder="A Title" className="input input-bordered w-full" />
+                    </div>
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text">expireIn</span>
+                        </label>
+                        <label className="input-group ">
+                            <input {...register("expireIn", { required: true })} type="date" className="input input-bordered w-full" />
+                        </label>
                     </div>
                 </div>
                 <div className="flex gap-6">
