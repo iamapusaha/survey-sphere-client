@@ -17,6 +17,30 @@ const SurveyDetails = () => {
     const axiosPublic = useAxiosPublic()
     const currentTime = moment();
     const timestamp = currentTime._d
+    const handlAddReport = e => {
+        e.preventDefault()
+        const report = e.target.report.value;
+        const reportInfo = {
+            user: user.displayName,
+            email: user.email,
+            report
+        }
+        console.log(reportInfo);
+        axiosPublic.patch(`/survey/report/${_id}`, reportInfo)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+                    // refetch() 
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "your react added",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+    }
     const handlAddComment = e => {
         e.preventDefault()
         const comment = e.target.comment.value;
@@ -148,6 +172,29 @@ const SurveyDetails = () => {
                             isProUser ?
                                 <input className="btn btn-block bg-[#6f7191] text-white" type="submit" value="Add Comment" />
                                 : <input disabled className="btn btn-block bg-[#6f7191] text-white" type="submit" value="Add Comment" />
+                        }
+                    </form>
+                </div>
+            </div>
+            <div>
+                <div className="container mx-auto my-6 bg-[#F6F6F6] p-5 rounded">
+                    <h1 className="text-5xl text-center my-2">Why you want to report?</h1>
+                    <form onSubmit={handlAddReport}>
+                        <div className="md:flex gap-3 px-2 md:px-1 mb-6">
+                            <div className="form-control w-full">
+                                <label className="label">
+                                    <span className="label-text">Report</span>
+                                </label>
+                                <label className="input-group">
+                                    <textarea name="report" placeholder="please write in details, why you want to report?" required className="textarea textarea-bordered textarea-xs w-full" ></textarea>
+                                </label>
+                            </div>
+                        </div>
+
+                        {
+                            isProUser || user ?
+                                <input className="btn btn-block bg-[#6f7191] text-white" type="submit" value="Add Report" />
+                                : <input disabled className="btn btn-block bg-[#6f7191] text-white" type="submit" value="Add Report" />
                         }
                     </form>
                 </div>
