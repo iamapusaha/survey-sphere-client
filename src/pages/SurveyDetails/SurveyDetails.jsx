@@ -10,10 +10,11 @@ import useProUser from "../../hooks/useProUser";
 
 const SurveyDetails = () => {
     const surveyData = useLoaderData();
-    const [isProUser] = useProUser()
-    console.log(isProUser);
-    const { _id, like, title, image, description, totalVotes, yesVotes, noVotes } = surveyData;
     const { user } = useAuth();
+    const [isProUser] = useProUser()
+    console.log(isProUser, user);
+    const { _id, like, title, image, description, totalVotes, yesVotes, noVotes } = surveyData;
+
     const axiosPublic = useAxiosPublic()
     const currentTime = moment();
     const timestamp = currentTime._d
@@ -66,61 +67,84 @@ const SurveyDetails = () => {
             })
     }
     const handleLikeDislike = (like, dislike) => {
-        const reactInfo = {
-            like,
-            dislike
+        if (user || isProUser) {
+            const reactInfo = {
+                like,
+                dislike
+            }
+
+            axiosPublic.patch(`/survey/likedis/${_id}`, reactInfo)
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data.modifiedCount > 0) {
+                        // refetch() 
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "your react added",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                })
         }
-        console.log(reactInfo);
-        axiosPublic.patch(`/survey/likedis/${_id}`, reactInfo)
-            .then(res => {
-                console.log(res.data);
-                if (res.data.modifiedCount > 0) {
-                    // refetch() 
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "your react added",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                }
-            })
+        else {
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "login first to participated the survey.",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
     }
     const handleCollectVotes = (yes, no, vote) => {
-        const voteInfo = {
-            vote: {
-                yes,
-                no,
-            },
-            user: {
-                name: user.displayName,
-                email: user.email,
-                timestamp,
-                option: vote
-            }
-        }
-        axiosPublic.patch(`/survey/vote/${_id}`, voteInfo)
-            .then(res => {
-                console.log(res.data);
-                if (res.data.modifiedCount > 0) {
-                    // refetch() 
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Your vote is succfully counted",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                } else {
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "error",
-                        title: "You have already participated in this survey.",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
+
+        if (user || isProUser) {
+            const voteInfo = {
+                vote: {
+                    yes,
+                    no,
+                },
+                user: {
+                    name: user?.displayName,
+                    email: user?.email,
+                    timestamp,
+                    option: vote
                 }
-            })
+            }
+
+            axiosPublic.patch(`/survey/vote/${_id}`, voteInfo)
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data.modifiedCount > 0) {
+                        // refetch() 
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Your vote is succfully counted",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    } else {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "error",
+                            title: "You have already participated in this survey.",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                })
+        } else {
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "login first to participated the survey.",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
     }
     return (
         <div>
