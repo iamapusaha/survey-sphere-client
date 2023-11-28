@@ -60,18 +60,23 @@ const SurveyDetails = () => {
                 }
             })
     }
-    const handleCollectVotes = (vote) => {
+    const handleCollectVotes = (yes, no, vote) => {
         const voteInfo = {
-            surveyId: _id,
-            name: user?.displayName,
-            email: user?.email,
-            option: vote,
-            timestamp,
+            vote: {
+                yes,
+                no,
+            },
+            user: {
+                name: user.displayName,
+                email: user.email,
+                timestamp,
+                option: vote
+            }
         }
-        axiosPublic.post('/votes', voteInfo)
+        axiosPublic.patch(`/survey/vote/${_id}`, voteInfo)
             .then(res => {
                 console.log(res.data);
-                if (res.data.insertedId) {
+                if (res.data.modifiedCount > 0) {
                     // refetch() 
                     Swal.fire({
                         position: "top-end",
@@ -102,8 +107,8 @@ const SurveyDetails = () => {
                         />
                     </div>
                     <div className='flex gap-4'>
-                        <button onClick={() => handleCollectVotes('yes')} className="btn btn-outline btn-success">Yes</button>
-                        <button onClick={() => handleCollectVotes('no')} className="btn btn-outline btn-error">No</button>
+                        <button onClick={() => handleCollectVotes(1, 0, 'yes')} className="btn btn-outline btn-success">Yes</button>
+                        <button onClick={() => handleCollectVotes(0, 1, 'no')} className="btn btn-outline btn-error">No</button>
                     </div>
                     <div className="flex gap-5">
                         <button onClick={() => handleLikeDislike(1, 0)}><AiOutlineLike className="text-6xl"></AiOutlineLike></button>
