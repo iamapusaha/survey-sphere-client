@@ -41,6 +41,7 @@ const SurveyCreation = () => {
                 no: 0,
                 timestamp,
                 status,
+                feedbacks: [],
                 votes: [],
                 comments: []
             }
