@@ -19,8 +19,9 @@ const SurveyDetails = () => {
     const { _id, like, title, image, description, totalVotes, yesVotes, noVotes } = surveyData;
 
     const axiosPublic = useAxiosPublic()
-    const currentTime = moment();
-    const timestamp = currentTime._d
+    const currentTime = moment().format('lll');
+    const timestamp = currentTime
+    console.log(timestamp);
     const handlAddReport = e => {
         e.preventDefault()
         const report = e.target.report.value;
