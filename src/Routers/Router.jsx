@@ -12,6 +12,7 @@ import SurveyDetails from "../pages/SurveyDetails/SurveyDetails";
 import SurveyTable from "../pages/DashBoard/ManageSurvey/SurveyTable";
 import SurveyResponse from "../pages/DashBoard/ManageSurvey/SurveyResponse";
 import AdminHome from "../pages/DashBoard/AdminHome";
+import SurveyorHome from "../pages/DashBoard/SurveyorHome";
 
 
 
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
             {
                 path: 'survey-response/:id',
                 element: <SurveyResponse></SurveyResponse>
+            },
+            {
+                path: 'survey-home',
+                element: <SurveyorHome></SurveyorHome>
             }
         ]
     },

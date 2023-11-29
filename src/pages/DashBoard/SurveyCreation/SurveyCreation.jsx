@@ -81,7 +81,7 @@ const SurveyCreation = () => {
     return (
         <div className="my-8">
             <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-                <div className="flex gap-6">
+                <div className="md:flex gap-6">
                     <div className="form-control w-full ">
                         <label className="label">
                             <span className="label-text">A Title*</span>
@@ -97,7 +97,7 @@ const SurveyCreation = () => {
                         </label>
                     </div>
                 </div>
-                <div className="flex gap-6">
+                <div className="md:flex gap-6">
 
                     <div className="form-control w-full ">
                         <label className="label">
@@ -120,7 +120,7 @@ const SurveyCreation = () => {
                     </div>
 
                 </div>
-                <div className="flex gap-6">
+                <div className="md:flex gap-6">
                     <div className="form-control w-full ">
                         <label className="label">
                             <span className="label-text">Like*</span>

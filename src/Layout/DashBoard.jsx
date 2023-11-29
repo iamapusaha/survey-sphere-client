@@ -3,33 +3,55 @@ import { FaHome, FaShoppingBag } from 'react-icons/fa';
 import { IoMdMenu } from "react-icons/io";
 import { IoMail } from "react-icons/io5";
 import { RiSurveyFill } from "react-icons/ri";
+import useAdmin from "../hooks/useAdmin";
 
 
 const DashBoard = () => {
+    const [isAdmin] = useAdmin()
     return (
         <div className="container mx-auto flex gap-10">
             <div className="w-72 h-screen bg-blue-500">
                 <ul className="menu p-4 rounded-box mt-2 uppercase">
 
-                    <>
-                        <li className="mb-3 "><NavLink to='/dashboard/admin-home'>
-                            <FaHome></FaHome>
-                            Admin Home
-                        </NavLink></li>
-                        <li className="mb-3"><NavLink to='/dashboard/survey-creation'>
-                            <RiSurveyFill></RiSurveyFill>
-                            Survey Creation
-                        </NavLink></li>
-                        <li className="mb-3"><NavLink to='/dashboard/all-users'>
-                            <RiSurveyFill></RiSurveyFill>
-                            All Users
-                        </NavLink></li>
-                        <li className="mb-3"><NavLink to='/dashboard/manage-survey'>
-                            <RiSurveyFill></RiSurveyFill>
-                            Manage Survey
-                        </NavLink></li>
+                    {
+                        isAdmin ? <>
+                            <li className="mb-3 "><NavLink to='/dashboard/admin-home'>
+                                <FaHome></FaHome>
+                                Admin Home
+                            </NavLink></li>
+                            <li className="mb-3"><NavLink to='/dashboard/survey-creation'>
+                                <RiSurveyFill></RiSurveyFill>
+                                Survey Creation
+                            </NavLink></li>
+                            <li className="mb-3"><NavLink to='/dashboard/all-users'>
+                                <RiSurveyFill></RiSurveyFill>
+                                All Users
+                            </NavLink></li>
+                            <li className="mb-3"><NavLink to='/dashboard/manage-survey'>
+                                <RiSurveyFill></RiSurveyFill>
+                                Manage Survey
+                            </NavLink></li>
 
-                    </>
+                        </> :
+                            <>
+                                <li className="mb-3 "><NavLink to='/dashboard/surveyor-home'>
+                                    <FaHome></FaHome>
+                                    Surveyor Home
+                                </NavLink></li>
+                                <li className="mb-3"><NavLink to='/dashboard/survey-creation'>
+                                    <RiSurveyFill></RiSurveyFill>
+                                    Survey Creation
+                                </NavLink></li>
+                                <li className="mb-3"><NavLink to='/dashboard/all-users'>
+                                    <RiSurveyFill></RiSurveyFill>
+                                    All Users
+                                </NavLink></li>
+                                <li className="mb-3"><NavLink to='/dashboard/manage-survey'>
+                                    <RiSurveyFill></RiSurveyFill>
+                                    Manage Survey
+                                </NavLink></li>
+                            </>
+                    }
 
 
 
