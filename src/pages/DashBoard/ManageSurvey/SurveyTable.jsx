@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import { FaTrashAlt } from "react-icons/fa";
 
 const SurveyTable = () => {
+
+
     const axiosSecure = useAxiosSecure();
 
     const { data: surveysData = [], refetch } = useQuery({
@@ -82,7 +84,6 @@ const SurveyTable = () => {
                         <th>Status</th>
                         <th>Admin Feedback</th>
                         <th>Chnge Status</th>
-                        <th>update</th>
                         <th>Delete</th>
                         <th>Detils</th>
                     </tr>
@@ -127,9 +128,6 @@ const SurveyTable = () => {
                                         </details>
                                     </li>
                                 </ul>
-                            </td>
-                            <td>
-                                <Link to={`/dashboard/update-survey/${data._id}`} className="btn btn-ghost btn-md">update</Link>
                             </td>
                             <td>
                                 <button onClick={() => handleDeleteSurvey(data._id)} className="btn btn-ghost btn-lg">
