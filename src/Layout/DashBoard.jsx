@@ -10,7 +10,7 @@ const DashBoard = () => {
     const [isAdmin] = useAdmin()
     return (
         <div className="container mx-auto flex gap-10">
-            <div className="w-72 h-screen bg-blue-500">
+            <div className="md:w-72 w-40 h-screen bg-blue-500">
                 <ul className="menu p-4 rounded-box mt-2 uppercase">
 
                     {

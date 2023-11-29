@@ -63,7 +63,7 @@ const AllUsers = () => {
         });
     }
     return (
-        <div>
+        <div className="overflow-x-auto">
 
             <div className="flex justify-between my-5">
                 <h1>Total users: {users.length}</h1>
