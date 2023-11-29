@@ -4,6 +4,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const SurveyTable = () => {
     const axiosSecure = useAxiosSecure();
@@ -111,7 +112,7 @@ const SurveyTable = () => {
 
 
                             <th>
-                                <button className="btn btn-ghost btn-xs">details</button>
+                                <Link to={`/dashboard/survey-response/${data._id}`} className="btn btn-ghost btn-xs">details</Link>
                             </th>
                         </tr>)
 

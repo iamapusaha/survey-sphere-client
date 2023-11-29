@@ -14,7 +14,7 @@ const SurveyDetails = () => {
     const { user } = useAuth();
     const [isUser] = UseUser()
     const [isProUser] = useProUser()
-    console.log(isProUser, user);
+    // console.log(isProUser, user);
     const { _id, like, title, image, description, totalVotes, yesVotes, noVotes } = surveyData;
 
     const axiosPublic = useAxiosPublic()
@@ -28,10 +28,10 @@ const SurveyDetails = () => {
             email: user.email,
             report
         }
-        console.log(reportInfo);
+        // console.log(reportInfo);
         axiosPublic.patch(`/survey/report/${_id}`, reportInfo)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 if (res.data.modifiedCount > 0) {
                     // refetch() 
                     Swal.fire({
@@ -52,10 +52,10 @@ const SurveyDetails = () => {
             email: user.email,
             comment
         }
-        console.log(commentInfo);
+        // console.log(commentInfo);
         axiosPublic.patch(`/survey/comment/${_id}`, commentInfo)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 if (res.data.modifiedCount > 0) {
                     // refetch() 
                     Swal.fire({
@@ -70,6 +70,7 @@ const SurveyDetails = () => {
     }
     const handleLikeDislike = (like, dislike) => {
         if (isUser || isProUser) {
+            console.log(isProUser, isUser);
             const reactInfo = {
                 like,
                 dislike
@@ -77,7 +78,7 @@ const SurveyDetails = () => {
 
             axiosPublic.patch(`/survey/likedis/${_id}`, reactInfo)
                 .then(res => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     if (res.data.modifiedCount > 0) {
                         // refetch() 
                         Swal.fire({
@@ -118,7 +119,7 @@ const SurveyDetails = () => {
 
             axiosPublic.patch(`/survey/vote/${_id}`, voteInfo)
                 .then(res => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     if (res.data.modifiedCount > 0) {
                         // refetch() 
                         Swal.fire({

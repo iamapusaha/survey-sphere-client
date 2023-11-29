@@ -10,6 +10,8 @@ import AllUsers from "../pages/DashBoard/AllUsers/AllUsers";
 import Surveys from "../pages/Surveys/Surveys";
 import SurveyDetails from "../pages/SurveyDetails/SurveyDetails";
 import SurveyTable from "../pages/DashBoard/ManageSurvey/SurveyTable";
+import SurveyResponse from "../pages/DashBoard/ManageSurvey/SurveyResponse";
+import PrivateRoute from "./PrivateRoute";
 
 
 
@@ -30,7 +32,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/survey/:id',
-                element: <SurveyDetails></SurveyDetails>,
+                element: <PrivateRoute><SurveyDetails></SurveyDetails></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/survey/${params.id}`)
             }
         ]
@@ -49,6 +51,10 @@ const router = createBrowserRouter([
             {
                 path: 'manage-survey',
                 element: <SurveyTable></SurveyTable>
+            },
+            {
+                path: 'survey-response/:id',
+                element: <SurveyResponse></SurveyResponse>
             }
         ]
     },

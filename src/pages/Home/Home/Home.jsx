@@ -27,7 +27,7 @@ const Home = () => {
         queryFn: async () => {
             const res = await axiosPublic.get('/surveys');
             // console.log(res.data);
-            return res.data
+            return res?.data
         }
     })
 
