@@ -11,6 +11,7 @@ import Surveys from "../pages/Surveys/Surveys";
 import SurveyDetails from "../pages/SurveyDetails/SurveyDetails";
 import SurveyTable from "../pages/DashBoard/ManageSurvey/SurveyTable";
 import SurveyResponse from "../pages/DashBoard/ManageSurvey/SurveyResponse";
+import AdminHome from "../pages/DashBoard/AdminHome";
 
 
 
@@ -37,11 +38,15 @@ const router = createBrowserRouter([
         ]
     }, {
         path: 'dashboard',
-        element: <AdminRoute><DashBoard></DashBoard></AdminRoute>,
+        element: <DashBoard></DashBoard>,
         children: [
             {
+                path: 'admin-home',
+                element: <AdminHome></AdminHome>
+            },
+            {
                 path: 'survey-creation',
-                element: <AdminRoute><SurveyCreation></SurveyCreation></AdminRoute>
+                element: <SurveyCreation></SurveyCreation>
             },
             {
                 path: 'all-users',

@@ -12,7 +12,7 @@ const DashBoard = () => {
                 <ul className="menu p-4 rounded-box mt-2 uppercase">
 
                     <>
-                        <li className="mb-3 "><NavLink to='/dashboard'>
+                        <li className="mb-3 "><NavLink to='/dashboard/admin-home'>
                             <FaHome></FaHome>
                             Admin Home
                         </NavLink></li>
