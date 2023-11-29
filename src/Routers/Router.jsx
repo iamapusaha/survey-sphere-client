@@ -62,7 +62,7 @@ const router = createBrowserRouter([
                 element: <SurveyResponse></SurveyResponse>
             },
             {
-                path: 'survey-home',
+                path: 'surveyor-home',
                 element: <SurveyorHome></SurveyorHome>
             }
         ]
