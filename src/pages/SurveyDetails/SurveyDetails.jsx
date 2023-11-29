@@ -14,7 +14,7 @@ const SurveyDetails = () => {
     const { user } = useAuth();
     const [isUser] = UseUser()
     const [isProUser] = useProUser()
-    // console.log(isProUser, user);
+    console.log(isProUser, user);
     const { _id, like, title, image, description, totalVotes, yesVotes, noVotes } = surveyData;
 
     const axiosPublic = useAxiosPublic()
@@ -133,7 +133,7 @@ const SurveyDetails = () => {
                         Swal.fire({
                             position: "top-end",
                             icon: "error",
-                            title: "only  logged user/pro-user can give vote!",
+                            title: "You Have already participated the survey!",
                             showConfirmButton: false,
                             timer: 1500
                         });
