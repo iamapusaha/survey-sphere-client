@@ -4,6 +4,7 @@
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import logo from '../../assets/logo.png'
 
 const NavBar = () => {
     const { user, logOut } = useAuth();
@@ -60,7 +61,9 @@ const NavBar = () => {
                         {menuItem}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">P & s</a>
+                <div>
+                    <Link to='/'><img src={logo} alt="" /></Link>
+                </div>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className=" menu menu-horizontal px-1">

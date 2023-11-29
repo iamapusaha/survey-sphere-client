@@ -56,9 +56,9 @@ const Home = () => {
                     ></SurveyCart>)
                 }
             </div>
-            <div className="my-8 py-5">
+            <div className="my-8 ">
                 <h1 className="text-center text-5xl text-primary mb-9">Testimonials</h1>
-                <Marquee>
+                <Marquee className="pb-8">
                     <div className="h-96 mx-4 card bordered w-96 bg-base-100 shadow-xl">
                         <figure className="p-6">
                             <img src={one} alt="Avatar" className="rounded-full h-24 w-24 object-cover mx-auto border-4 border-primary" />
