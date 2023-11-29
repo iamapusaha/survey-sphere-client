@@ -5,16 +5,26 @@ import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import moment from "moment/moment";
+import useAdmin from "../../../hooks/useAdmin";
+import useSurveyor from "../../../hooks/useSurveyor";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 
 const SurveyCreation = () => {
+    const [isAdmin] = useAdmin();
+    const [isSurveyor] = useSurveyor()
+    console.log(isAdmin, isSurveyor);
     const time = moment();
     const timestamp = time._d;
-    const status = 'Publish'
-
+    let status = ''
+    if (isAdmin) {
+        status = 'publish'
+    }
+    if (isSurveyor) {
+        status = 'unpublish'
+    }
 
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
@@ -47,7 +57,7 @@ const SurveyCreation = () => {
             }
             // console.log(surveyItem);
             const surveyRes = await axiosSecure.post('/surveys', surveyItem)
-            console.log(surveyRes.data);
+            // console.log(surveyRes.data);
             if (surveyRes.data.insertedId) {
                 Swal.fire({
                     position: "top-end",

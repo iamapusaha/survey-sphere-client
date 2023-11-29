@@ -53,6 +53,7 @@ const SurveyTable = () => {
                         <th>Title</th>
                         <th>Status</th>
                         <th>Chnge Status</th>
+                        <th>Delete</th>
                         <th>Detils</th>
                     </tr>
                 </thead>
