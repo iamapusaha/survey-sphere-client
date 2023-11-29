@@ -104,56 +104,6 @@ const SurveyTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {
-                        surveysData.map((data, idx) =>
-                            <tr key={data._id}>
-                                <td>{idx + 1}</td>
-                                <th>
-                                    {data.title}
-                                </th>
-                                <td>
-                                    {data.status}
-                                </td>
-                                <td>
-                                    {
-                                        data.feedbacks.map((feedback, index) => (
-                                            <div key={index}>{feedback.feed}</div>
-                                        ))
-                                    }
-                                </td>
-                                <td>
-                                    <ul className="menu menu-horizontal bg-slate-400">
-                                        <li>
-                                            <details>
-                                                <summary>
-                                                    select
-                                                </summary>
-                                                <div className="bg-base-100 rounded-t-none z-10">
-                                                    <li className="mb-2">
-                                                        <button onClick={(e) => handleFeedBack(e, "publish", data._id)} className="btn btn-sm btn-success">publish</button>
-                                                    </li>
-                                                    <li className="bg-orange-500">
-                                                        <form onSubmit={(e) => handleFeedBack(e, "unpublish", data._id)}>
-                                                            <input type="text" name="feedback" className="input input-bordered join-item" required />
-                                                            <button type="submit" className="btn btn-primary join-item">unpublish</button>
-                                                        </form>
-                                                    </li>
-                                                </div>
-                                            </details>
-                                        </li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <button onClick={() => handleDeleteSurvey(data._id)} className="btn btn-ghost btn-lg">
-                                        <FaTrashAlt></FaTrashAlt>
-                                    </button>
-                                </td>
-                                <td>
-                                    <Link to={`/dashboard/survey-response/${data._id}`} className="btn btn-ghost btn-md">Survey responses</Link>
-                                </td>
-                            </tr>)
-
-                    } */}
                     {
                         surveysData.map((data, idx) =>
                             <tr key={data._id}>
