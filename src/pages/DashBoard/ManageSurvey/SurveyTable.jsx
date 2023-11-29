@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { FaTrashAlt } from "react-icons/fa";
 
 const SurveyTable = () => {
     const axiosSecure = useAxiosSecure();
@@ -42,6 +43,33 @@ const SurveyTable = () => {
                 }
             })
     }
+    const handleDeleteSurvey = id => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/survey/${id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.deletedCount > 0) {
+                            refetch()
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+
+                            });
+                        }
+                    })
+            }
+        });
+    }
 
     return (
         <div className="overflow-x-auto">
@@ -52,6 +80,7 @@ const SurveyTable = () => {
                         <th>#</th>
                         <th>Title</th>
                         <th>Status</th>
+                        <th>Admin Feedback</th>
                         <th>Chnge Status</th>
                         <th>Delete</th>
                         <th>Detils</th>
@@ -67,27 +96,15 @@ const SurveyTable = () => {
                             <td>
                                 {data.status}
                             </td>
-                            {/* <td>
-                                <ul className="menu menu-horizontal bg-slate-400">
-                                    <li>
-                                        <details>
-                                            <summary>
-                                                select
-                                            </summary>
-                                            <div className=" bg-base-100 rounded-t-none z-10">
-                                                <li className="mb-2"><button className="btn btn-sm btn-success">Success</button></li>
-                                                <li className="bg-orange-500">
-                                                    <form onClick={() => handleFeedBack()}>
-                                                        <input type="text" name="feedback" className="input input-bordered join-item" />
-                                                        <button className="btn btn-primary join-item">Subscribe</button>
-                                                    </form>
-                                                </li>
+                            <td>
+                                {
+                                    data.feedbacks.map((feedback, index) => (
+                                        <div key={index}>{feedback.feed || 'By default unpublish'}</div>
+                                    ))
+                                }
+                            </td>
 
-                                            </div>
-                                        </details>
-                                    </li>
-                                </ul>
-                            </td> */}
+
                             <td>
                                 <ul className="menu menu-horizontal bg-slate-400">
                                     <li>
@@ -111,9 +128,13 @@ const SurveyTable = () => {
                                 </ul>
                             </td>
 
-
+                            <td>
+                                <button onClick={() => handleDeleteSurvey(data._id)} className="btn btn-ghost btn-lg">
+                                    <FaTrashAlt></FaTrashAlt>
+                                </button>
+                            </td>
                             <th>
-                                <Link to={`/dashboard/survey-response/${data._id}`} className="btn btn-ghost btn-xs">details</Link>
+                                <Link to={`/dashboard/survey-response/${data._id}`} className="btn btn-ghost btn-xs">Survey responses</Link>
                             </th>
                         </tr>)
 
