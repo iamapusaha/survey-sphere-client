@@ -11,7 +11,6 @@ import Surveys from "../pages/Surveys/Surveys";
 import SurveyDetails from "../pages/SurveyDetails/SurveyDetails";
 import SurveyTable from "../pages/DashBoard/ManageSurvey/SurveyTable";
 import SurveyResponse from "../pages/DashBoard/ManageSurvey/SurveyResponse";
-import PrivateRoute from "./PrivateRoute";
 
 
 

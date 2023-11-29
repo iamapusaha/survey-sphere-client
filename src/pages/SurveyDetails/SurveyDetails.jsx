@@ -15,6 +15,7 @@ const SurveyDetails = () => {
     const [isUser] = UseUser()
     const [isProUser] = useProUser()
     console.log(isProUser, user);
+
     const { _id, like, title, image, description, totalVotes, yesVotes, noVotes } = surveyData;
 
     const axiosPublic = useAxiosPublic()

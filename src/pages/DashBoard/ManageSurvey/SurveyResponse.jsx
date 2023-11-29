@@ -75,32 +75,36 @@ const SurveyResponse = () => {
                 </table>
             </div>
             <div>
+                <div className='flex justify-center'>
+                    <PieChart width={400} height={400}>
+                        <Pie
+                            data={data}
+                            cx="50%"
+                            cy="50%"
+                            labelLine={false}
+                            label={renderCustomizedLabel}
+                            outerRadius={80}
+                            fill="#8884d8"
+                            dataKey="value"
+                        >
+                            {data.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                            ))}
+                        </Pie>
+                    </PieChart>
+                </div>
 
-                <PieChart width={400} height={400}>
-                    <Pie
-                        data={data}
-                        cx="50%"
-                        cy="50%"
-                        labelLine={false}
-                        label={renderCustomizedLabel}
-                        outerRadius={80}
-                        fill="#8884d8"
-                        dataKey="value"
-                    >
-                        {data.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                        ))}
-                    </Pie>
-                </PieChart>
+                <h1 className='text-3xl text-center mb-4'>Survey Title:{title}</h1>
                 <div className='container mx-auto flex justify-center'>
+
                     <div className=' flex gap-14 md:flex-row flex-col'>
                         <div className='flex items-center gap-4'>
                             <h3 className='text-lg font-semibold'>Yes Vote:</h3>
-                            <progress className="progress progress-secondary w-24" value={yesPercent} max="100"></progress>
+                            <progress className="progress progress-success w-24" value={yesPercent} max="100"></progress>
                         </div>
                         <div className='flex items-center gap-4'>
                             <h3 className='text-lg font-semibold'>No Vote:</h3>
-                            <progress className="progress progress-primary w-24" value={noPercent} max="100"></progress>
+                            <progress className="progress progress-error w-24" value={noPercent} max="100"></progress>
                         </div>
                     </div >
                 </div>
