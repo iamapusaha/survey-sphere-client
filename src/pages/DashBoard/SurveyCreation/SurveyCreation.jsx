@@ -19,11 +19,19 @@ const SurveyCreation = () => {
     const time = moment();
     const timestamp = time._d;
     let status = ''
+    let feedbacks = ''
     if (isAdmin) {
-        status = 'publish'
+        status = 'publish',
+            feedbacks = []
     }
     if (isSurveyor) {
-        status = 'unpublish'
+        status = 'unpublish',
+            feedbacks = [
+                {
+                    id: '123',
+                    feed: 'By default unpublish'
+                }
+            ]
     }
 
     const axiosPublic = useAxiosPublic();
@@ -51,7 +59,7 @@ const SurveyCreation = () => {
                 no: 0,
                 timestamp,
                 status,
-                feedbacks: [],
+                feedbacks,
                 votes: [],
                 comments: []
             }

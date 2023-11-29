@@ -99,7 +99,9 @@ const SurveyTable = () => {
                             <td>
                                 {
                                     data.feedbacks.map((feedback, index) => (
-                                        <div key={index}>{feedback.feed || 'By default unpublish'}</div>
+                                        <div key={index}>{
+                                            feedback && feedback.feed ? feedback.feed : 'No data available'
+                                        }</div>
                                     ))
                                 }
                             </td>
@@ -142,6 +144,7 @@ const SurveyTable = () => {
 
 
                 </tbody>
+
 
             </table>
         </div>
