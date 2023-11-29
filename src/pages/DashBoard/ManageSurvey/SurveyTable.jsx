@@ -82,6 +82,7 @@ const SurveyTable = () => {
                         <th>Status</th>
                         <th>Admin Feedback</th>
                         <th>Chnge Status</th>
+                        <th>update</th>
                         <th>Delete</th>
                         <th>Detils</th>
                     </tr>
@@ -127,14 +128,16 @@ const SurveyTable = () => {
                                     </li>
                                 </ul>
                             </td>
-
+                            <td>
+                                <Link to={`/dashboard/update-survey/${data._id}`} className="btn btn-ghost btn-md">update</Link>
+                            </td>
                             <td>
                                 <button onClick={() => handleDeleteSurvey(data._id)} className="btn btn-ghost btn-lg">
                                     <FaTrashAlt></FaTrashAlt>
                                 </button>
                             </td>
                             <th>
-                                <Link to={`/dashboard/survey-response/${data._id}`} className="btn btn-ghost btn-xs">Survey responses</Link>
+                                <Link to={`/dashboard/survey-response/${data._id}`} className="btn btn-ghost btn-md">Survey responses</Link>
                             </th>
                         </tr>)
 
