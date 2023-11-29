@@ -5,7 +5,7 @@ import LogIn from "../pages/LogIn/LogIn";
 import SignUp from "../pages/SignUp/SignUp";
 import DashBoard from "../Layout/DashBoard";
 import SurveyCreation from "../pages/DashBoard/SurveyCreation/SurveyCreation";
-import AdminRoute from "./AdminRoute";
+// import AdminRoute from "./AdminRoute";
 import AllUsers from "../pages/DashBoard/AllUsers/AllUsers";
 import Surveys from "../pages/Surveys/Surveys";
 import SurveyDetails from "../pages/SurveyDetails/SurveyDetails";
