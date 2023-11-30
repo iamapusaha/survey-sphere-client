@@ -15,6 +15,7 @@ import AdminHome from "../pages/DashBoard/AdminHome";
 import SurveyorHome from "../pages/DashBoard/SurveyorHome";
 import MixRoute from "./MixRoute";
 import ContactUS from "../pages/ContactUS/ContactUS";
+import AboutUs from "../pages/AboutUs/AboutUs";
 
 
 
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
             {
                 path: '/contact-us',
                 element: <ContactUS></ContactUS>
+            },
+            {
+                path: '/about-us',
+                element: <AboutUs></AboutUs>
             }
         ]
     }, {
