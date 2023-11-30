@@ -14,6 +14,7 @@ import SurveyResponse from "../pages/DashBoard/ManageSurvey/SurveyResponse";
 import AdminHome from "../pages/DashBoard/AdminHome";
 import SurveyorHome from "../pages/DashBoard/SurveyorHome";
 import AdminRoute from "./AdminRoute";
+import MixRoute from "./MixRoute";
 
 
 
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
         ]
     }, {
         path: 'dashboard',
-        element: <DashBoard></DashBoard>,
+        element: <MixRoute><DashBoard></DashBoard></MixRoute>,
         children: [
             {
                 path: 'admin-home',

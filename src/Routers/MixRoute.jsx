@@ -15,7 +15,7 @@ const MixRoute = ({ children }) => {
     if (loading || isAdminLoading || isSurveyorLoading) {
         return <span className="loading loading-bars loading-lg"></span>
     }
-    if (user && isAdmin && isSurveyor) {
+    if (user && (isAdmin || isSurveyor)) {
         return children;
     }
     return <Navigate state={{ from: location }} to='/'></Navigate>
