@@ -40,14 +40,14 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
-            console.log('current user is now', currentUser);
+            // console.log('current user is now', currentUser);
             if (currentUser) {
                 const userInfo = {
                     email: currentUser.email
                 }
                 axiosSecret.post('/jwt', userInfo)
                     .then(res => {
-                        console.log(res.data);
+                        // console.log(res.data);
                         const token = res.data.token;
                         if (token) {
                             localStorage.setItem('access-token', token)

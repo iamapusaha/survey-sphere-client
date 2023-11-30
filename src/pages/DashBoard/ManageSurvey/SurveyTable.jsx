@@ -7,14 +7,11 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import { FaTrashAlt } from "react-icons/fa";
 import useAdmin from "../../../hooks/useAdmin";
-import useSurveyor from "../../../hooks/useSurveyor";
 import { useState } from "react";
 
 const SurveyTable = () => {
     const [modalData, setModalData] = useState('');
     const [isAdmin] = useAdmin();
-    const [isSurveyor] = useSurveyor();
-    console.log(isAdmin, isSurveyor);
 
     const axiosSecure = useAxiosSecure();
 
@@ -38,7 +35,7 @@ const SurveyTable = () => {
         }
         axiosSecure.patch(`/survey/feedback/${id}`, feed)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 if (res.data.modifiedCount > 0) {
                     refetch()
                     Swal.fire({
@@ -64,7 +61,7 @@ const SurveyTable = () => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/survey/${id}`)
                     .then(res => {
-                        console.log(res.data);
+                        // console.log(res.data);
                         if (res.data.deletedCount > 0) {
                             refetch()
                             Swal.fire({
