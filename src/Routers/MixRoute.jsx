@@ -10,7 +10,6 @@ const MixRoute = ({ children }) => {
     const [isSurveyor, isSurveyorLoading, surveyorError] = useSurveyor()
     const location = useLocation()
 
-    // Add a new loading state that waits for both isAdmin and isSurveyor
     const loading = authLoading || isAdminLoading || isSurveyorLoading;
 
     if (loading) {

@@ -11,7 +11,7 @@ const Surveys = () => {
     const { data: surveysData, refetch } = useQuery({
         queryKey: ['surveys'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/surveys');
+            const res = await axiosPublic.get('/publish/surveys');
             // console.log(res.data);
             return res.data
         }

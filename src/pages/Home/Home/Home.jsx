@@ -47,7 +47,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <div className="grid grid-cols-4 gap-5 justify-between items-center mt-36">
+            <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 justify-between items-center mt-36">
                 {
                     surveysData?.map(survey => <SurveyCart
                         key={survey._id}
