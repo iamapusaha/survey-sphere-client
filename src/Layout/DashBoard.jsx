@@ -1,7 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { FaHome, FaShoppingBag } from 'react-icons/fa';
-import { IoMdMenu } from "react-icons/io";
-import { IoMail } from "react-icons/io5";
+import { FaHome } from 'react-icons/fa';
 import { RiSurveyFill } from "react-icons/ri";
 import useAdmin from "../hooks/useAdmin";
 
@@ -55,18 +53,6 @@ const DashBoard = () => {
                     <li className="mb-3"><NavLink to='/'>
                         <FaHome></FaHome>
                         home
-                    </NavLink></li>
-                    <li className="mb-3"><NavLink to='/order/salads'>
-                        <IoMdMenu></IoMdMenu>
-                        menu
-                    </NavLink></li>
-                    <li className="mb-3"><NavLink to='/shop'>
-                        <FaShoppingBag></FaShoppingBag>
-                        shop
-                    </NavLink></li>
-                    <li className="mb-3"><NavLink to='/contact'>
-                        <IoMail></IoMail>
-                        contact
                     </NavLink></li>
                 </ul>
             </div>
