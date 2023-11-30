@@ -16,7 +16,7 @@ const SurveyDetails = () => {
     const [isProUser] = useProUser()
     // console.log(isProUser, user);
 
-    const { _id, like, title, image, description, totalVotes, yesVotes, noVotes } = surveyData;
+    const { _id, like, dislike, title, image, description, yes, no, expireIn } = surveyData;
 
     const axiosPublic = useAxiosPublic()
     const currentTime = moment().format('lll');
@@ -161,18 +161,32 @@ const SurveyDetails = () => {
                             className="rounded-t-md"
                         />
                     </div>
-                    <div className='flex gap-4'>
-                        <button onClick={() => handleCollectVotes(1, 0, 'yes')} className="btn btn-outline btn-success">Yes</button>
-                        <button onClick={() => handleCollectVotes(0, 1, 'no')} className="btn btn-outline btn-error">No</button>
+                    <div>
+                        <h1 className="text-3xl text-center mb-3">{title}</h1>
+                        <div className='flex justify-center gap-7 mb-4'>
+                            <div>
+                                <button onClick={() => handleCollectVotes(1, 0, 'yes')} className="btn btn-outline btn-success">Yes</button>
+                                <p className="text-xl">Yes: {yes}</p>
+                            </div>
+                            <div>
+                                <button onClick={() => handleCollectVotes(0, 1, 'no')} className="btn btn-outline btn-error">No</button>
+                                <p className="text-xl">No: {no}</p>
+                            </div>
+                        </div>
                     </div>
-                    <div className="flex gap-5">
-                        <button onClick={() => handleLikeDislike(1, 0)}><AiOutlineLike className="text-6xl"></AiOutlineLike></button>
-                        <button onClick={() => handleLikeDislike(0, 1)}><AiOutlineDislike className="text-6xl"></AiOutlineDislike></button>
+                    <div className="flex justify-center gap-5">
+                        <div>
+                            <button onClick={() => handleLikeDislike(1, 0)}><AiOutlineLike className="text-6xl"></AiOutlineLike></button>
+                            <p className="text-xl">Like: {like}</p>
+                        </div>
+                        <div>
+                            <button onClick={() => handleLikeDislike(0, 1)}><AiOutlineDislike className="text-6xl"></AiOutlineDislike></button>
+                            <p className="text-xl">Dislike: {dislike}</p>
+                        </div>
                     </div>
                     <div className="text-center">
                         <h1 className="font-bold text-xl p-2"></h1>
-                        <h2 className="font-semibold">Deadline: </h2>
-                        <h2 className="font-semibold">Price range:  to </h2>
+                        <h2 className="font-semibold">Deadline: {expireIn}</h2>
                         <div className="flex justify-center">
                             <p className="font-semibold px-3">
                                 {description}
