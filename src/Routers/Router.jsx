@@ -14,6 +14,7 @@ import SurveyResponse from "../pages/DashBoard/ManageSurvey/SurveyResponse";
 import AdminHome from "../pages/DashBoard/AdminHome";
 import SurveyorHome from "../pages/DashBoard/SurveyorHome";
 import MixRoute from "./MixRoute";
+import ContactUS from "../pages/ContactUS/ContactUS";
 
 
 
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
             {
                 path: '/survey/:id',
                 element: <SurveyDetails></SurveyDetails>,
+            },
+            {
+                path: '/contact-us',
+                element: <ContactUS></ContactUS>
             }
         ]
     }, {
