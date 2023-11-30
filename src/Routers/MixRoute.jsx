@@ -6,11 +6,14 @@ import useSurveyor from '../hooks/useSurveyor';
 
 const MixRoute = ({ children }) => {
     const { user, loading: authLoading } = useAuth()
-    const [isAdmin, , adminError] = useAdmin();
-    const [isSurveyor, , surveyorError] = useSurveyor()
+    const [isAdmin, isAdminLoading, adminError] = useAdmin();
+    const [isSurveyor, isSurveyorLoading, surveyorError] = useSurveyor()
     const location = useLocation()
 
-    if (authLoading) {
+    // Add a new loading state that waits for both isAdmin and isSurveyor
+    const loading = authLoading || isAdminLoading || isSurveyorLoading;
+
+    if (loading) {
         return <span className="loading loading-bars loading-lg"></span>
     }
     if (adminError) {
@@ -30,3 +33,4 @@ MixRoute.propTypes = {
 };
 
 export default MixRoute;
+
