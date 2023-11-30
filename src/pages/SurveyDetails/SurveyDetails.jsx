@@ -1,24 +1,39 @@
 
 // import PropTypes from 'prop-types';
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
-import { useLoaderData } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import moment from "moment/moment";
 import Swal from "sweetalert2";
 import useProUser from "../../hooks/useProUser";
 import UseUser from "../../hooks/UseUser";
+import { useQuery } from "@tanstack/react-query";
 
 const SurveyDetails = () => {
-    const surveyData = useLoaderData();
+    const { id } = useParams()
     const { user } = useAuth();
     const [isUser] = UseUser()
     const [isProUser] = useProUser()
     // console.log(isProUser, user);
+    const axiosPublic = useAxiosPublic();
+    const { data: surveysData, refetch } = useQuery({
+        queryKey: ['surveysData'],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/survey/${id}`);
+            console.log(res.data);
+            return res.data
+        }
+    })
 
-    const { _id, like, dislike, title, image, description, yes, no, expireIn } = surveyData;
+    let _id, like, dislike, title, image, description, yes, no, expireIn, comments;
 
-    const axiosPublic = useAxiosPublic()
+    if (surveysData) {
+        ({ _id, like, dislike, title, image, description, yes, no, expireIn, comments } = surveysData);
+    }
+
+    // You can now use these variables in other parts of your code.
+
     const currentTime = moment().format('lll');
     const timestamp = currentTime
     // console.log(timestamp);
@@ -35,7 +50,7 @@ const SurveyDetails = () => {
             .then(res => {
                 // console.log(res.data);
                 if (res.data.modifiedCount > 0) {
-                    // refetch() 
+                    refetch()
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
@@ -59,7 +74,7 @@ const SurveyDetails = () => {
             .then(res => {
                 // console.log(res.data);
                 if (res.data.modifiedCount > 0) {
-                    // refetch() 
+                    refetch()
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
@@ -82,7 +97,7 @@ const SurveyDetails = () => {
                 .then(res => {
                     // console.log(res.data);
                     if (res.data.modifiedCount > 0) {
-                        // refetch() 
+                        refetch()
                         Swal.fire({
                             position: "top-end",
                             icon: "success",
@@ -123,7 +138,7 @@ const SurveyDetails = () => {
                 .then(res => {
                     // console.log(res.data);
                     if (res.data.modifiedCount > 0) {
-                        // refetch() 
+                        refetch()
                         Swal.fire({
                             position: "top-end",
                             icon: "success",
@@ -217,6 +232,11 @@ const SurveyDetails = () => {
                                 : <input disabled className="btn btn-block bg-[#6f7191] text-white" type="submit" value="Add Comment" />
                         }
                     </form>
+                    {
+                        comments?.map((comment, idx) => <p className="py-3" key={comment.id}>
+                            {idx + 1}/ comment added by Pro-User {comment.user}:   {comment.comment}
+                        </p>)
+                    }
                 </div>
             </div>
             <div>
