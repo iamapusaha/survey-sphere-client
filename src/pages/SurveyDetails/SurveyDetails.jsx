@@ -14,14 +14,14 @@ const SurveyDetails = () => {
     const { user } = useAuth();
     const [isUser] = UseUser()
     const [isProUser] = useProUser()
-    console.log(isProUser, user);
+    // console.log(isProUser, user);
 
     const { _id, like, title, image, description, totalVotes, yesVotes, noVotes } = surveyData;
 
     const axiosPublic = useAxiosPublic()
     const currentTime = moment().format('lll');
     const timestamp = currentTime
-    console.log(timestamp);
+    // console.log(timestamp);
     const handlAddReport = e => {
         e.preventDefault()
         const report = e.target.report.value;
@@ -72,7 +72,7 @@ const SurveyDetails = () => {
     }
     const handleLikeDislike = (like, dislike) => {
         if (isUser || isProUser) {
-            console.log(isProUser, isUser);
+            // console.log(isProUser, isUser);
             const reactInfo = {
                 like,
                 dislike

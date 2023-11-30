@@ -15,7 +15,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const SurveyCreation = () => {
     const [isAdmin] = useAdmin();
     const [isSurveyor] = useSurveyor()
-    console.log(isAdmin, isSurveyor);
+    // console.log(isAdmin, isSurveyor);
     const time = moment();
     const timestamp = time._d;
     let status = ''

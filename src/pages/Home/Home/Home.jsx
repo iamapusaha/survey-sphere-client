@@ -138,7 +138,7 @@ const Home = () => {
             <div className="join join-vertical w-full my-20">
                 <h1 className="text-center text-5xl text-primary mb-9">FAQ</h1>
                 <div className="collapse collapse-arrow join-item border border-base-300">
-                    <input type="radio" name="my-accordion-1" checked="checked" />
+                    <input type="radio" name="my-accordion-1" />
                     <div className="collapse-title text-xl font-medium">
                         What is SurveySphere?
                     </div>
