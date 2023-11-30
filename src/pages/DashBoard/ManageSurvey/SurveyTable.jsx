@@ -8,8 +8,10 @@ import { Link } from "react-router-dom";
 import { FaTrashAlt } from "react-icons/fa";
 import useAdmin from "../../../hooks/useAdmin";
 import useSurveyor from "../../../hooks/useSurveyor";
+import { useState } from "react";
 
 const SurveyTable = () => {
+    const [modalData, setModalData] = useState('');
     const [isAdmin] = useAdmin();
     const [isSurveyor] = useSurveyor();
     console.log(isAdmin, isSurveyor);
@@ -91,12 +93,14 @@ const SurveyTable = () => {
                                 <th>Admin Feedback</th>
                                 <th>Chnge Status</th>
                                 <th>Delete</th>
+                                <th>report</th>
                                 <th>Detils</th>
                             </> : <>
                                 <th>#</th>
                                 <th>Title</th>
                                 <th>Status</th>
                                 <th>Admin Feedback</th>
+                                <th>report</th>
                                 <th>Detils</th>
                             </>
                         }
@@ -113,7 +117,19 @@ const SurveyTable = () => {
                                 <td>
                                     {
                                         data.feedbacks.map((feedback, index) => (
-                                            <div key={index}>{feedback.feed}</div>
+                                            <div key={index}>
+                                                <button
+                                                    className="btn"
+                                                    onClick={() => {
+                                                        // Set the modal data state
+                                                        setModalData(feedback.feed);
+                                                        // Show the modal
+                                                        document.getElementById('my_modal_5').showModal();
+                                                    }}
+                                                >
+                                                    feedback
+                                                </button>
+                                            </div>
                                         ))
                                     }
                                 </td>
@@ -147,16 +163,56 @@ const SurveyTable = () => {
                                         </td>
                                     </>
                                 ) : null}
+
+                                <td>
+                                    {
+                                        data.feedbacks.map((feedback, index) => (
+                                            <div key={index}>
+                                                <button
+                                                    className="btn"
+                                                    onClick={() => {
+                                                        // Set the modal data state
+                                                        setModalData(feedback.feed);
+                                                        // Show the modal
+                                                        document.getElementById('my_modal_5').showModal();
+                                                    }}
+                                                >
+                                                    feedback
+                                                </button>
+                                            </div>
+                                        ))
+                                    }
+                                </td>
+
+
+
                                 <td>
                                     <Link to={`/dashboard/survey-response/${data._id}`} className="btn btn-ghost btn-md">Survey responses</Link>
                                 </td>
+
                             </tr>)
+
+
+
                     }
 
                 </tbody>
 
 
             </table>
+            {/* for modal data / */}
+            <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box">
+                    <p className="py-4">{modalData}</p>
+                    <div className="modal-action">
+                        <form method="dialog">
+                            {/* if there is a button in form, it will close the modal */}
+                            <button className="btn">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
+
         </div>
     );
 };
