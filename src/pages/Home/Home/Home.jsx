@@ -25,7 +25,7 @@ const Home = () => {
     const { data: surveysData, refetch } = useQuery({
         queryKey: ['surveys'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/surveys');
+            const res = await axiosPublic.get('/top/6/surveys');
             // console.log(res.data);
             return res?.data
         }
@@ -47,14 +47,19 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 justify-between items-center mt-36">
-                {
-                    surveysData?.map(survey => <SurveyCart
-                        key={survey._id}
-                        survey={survey}
-                        refetch={refetch}
-                    ></SurveyCart>)
-                }
+
+            <div className="mb-9 mt-14">
+                <h1 className="text-center text-5xl text-primary mb-9">Top Voted</h1>
+                <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 justify-between items-center">
+
+                    {
+                        surveysData?.map(survey => <SurveyCart
+                            key={survey._id}
+                            survey={survey}
+                            refetch={refetch}
+                        ></SurveyCart>)
+                    }
+                </div>
             </div>
             <div className="my-8 ">
                 <h1 className="text-center text-5xl text-primary mb-9">Testimonials</h1>
