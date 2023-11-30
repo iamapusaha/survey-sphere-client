@@ -116,14 +116,12 @@ const SurveyTable = () => {
                                 <td>{data.status}</td>
                                 <td>
                                     {
-                                        data.feedbacks.map((feedback, index) => (
+                                        data.feedbacks?.map((feedback, index) => (
                                             <div key={index}>
                                                 <button
                                                     className="btn"
                                                     onClick={() => {
-                                                        // Set the modal data state
                                                         setModalData(feedback.feed);
-                                                        // Show the modal
                                                         document.getElementById('my_modal_5').showModal();
                                                     }}
                                                 >
@@ -166,14 +164,12 @@ const SurveyTable = () => {
 
                                 <td>
                                     {
-                                        data.feedbacks.map((feedback, index) => (
+                                        data.reports?.map((report, index) => (
                                             <div key={index}>
                                                 <button
                                                     className="btn"
                                                     onClick={() => {
-                                                        // Set the modal data state
-                                                        setModalData(feedback.feed);
-                                                        // Show the modal
+                                                        setModalData(report.report);
                                                         document.getElementById('my_modal_5').showModal();
                                                     }}
                                                 >
