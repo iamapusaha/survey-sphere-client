@@ -21,7 +21,6 @@ const Surveys = () => {
             <Helmet>
                 <title>P & S || Survey</title>
             </Helmet>
-            <h1 className="text-xl">this is our home</h1>
             <div className="grid grid-cols-4 gap-5 justify-between items-center mt-36">
                 {
                     surveysData?.map(survey => <SurveyCart
