@@ -161,7 +161,7 @@ const SurveyTable = () => {
 
                                 <td>
                                     {
-                                        data.reports?.map((report, index) => (
+                                        data?.reports?.map((report, index) => (
                                             <div key={index}>
                                                 <button
                                                     className="btn"

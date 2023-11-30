@@ -35,7 +35,6 @@ const router = createBrowserRouter([
             {
                 path: '/survey/:id',
                 element: <SurveyDetails></SurveyDetails>,
-                // loader: ({ params }) => fetch(`http://localhost:5000/survey/${params.id}`)
             }
         ]
     }, {
