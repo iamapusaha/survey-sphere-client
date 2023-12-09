@@ -106,14 +106,14 @@ const SurveyTable = () => {
                 </thead>
                 <tbody>
                     {
-                        surveysData.map((data, idx) =>
+                        surveysData?.map((data, idx) =>
                             <tr key={data._id}>
                                 <td>{idx + 1}</td>
                                 <th>{data.title}</th>
                                 <td>{data.status}</td>
                                 <td>
                                     {
-                                        data.feedbacks?.map((feedback, index) => (
+                                        data?.feedbacks?.map((feedback, index) => (
                                             <div key={index}>
                                                 <button
                                                     className="btn"
