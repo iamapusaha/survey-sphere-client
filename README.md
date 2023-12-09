@@ -12,6 +12,6 @@ https://polling-and-survey.web.app/
 ## Discription
 Our platform is a dynamic polling and survey site that empowers users to voice their opinions on various topics. With features like a user-friendly voting section, an administrative dashboard for authorized individuals, and a payment page for account upgrades, we ensure a seamless and interactive user experience. Join us in shaping discussions and influencing content through your valuable input.
 
-## Technology is use
+## Technology i use
 JavaScript, React, Node.js ,Express.js, MongoDB, Firebase, Vercel,JWT, Transact
 Query, Mongoose,Moment.js, and Tailwind CSS
